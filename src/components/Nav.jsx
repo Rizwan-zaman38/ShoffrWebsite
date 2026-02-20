@@ -7,7 +7,7 @@ const Nav = () => {
         <header className='w-full h-[18] bg-white'>
             <nav className='flex justify-between items-center py-4 px-16 '>
                 <div>
-                    <img src="../src/assets/images/Company Logo.png" alt="logo" />
+                    <img src="../src/assets/images/companylogo.png" alt="logo" />
                 </div>
                 <div className='hidden md:flex justify-between items-center'>
                     <ul className='flex justify-between items-center font-Roboto mr-2'>
