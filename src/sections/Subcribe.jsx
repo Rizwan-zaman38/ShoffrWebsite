@@ -1,5 +1,5 @@
 import React from 'react'
-import container from '../assets/icons/container.png'
+import container from '../assets/icons/Container.png'
 import apple from '../assets/icons/apple.png'
 import play from '../assets/icons/play.png'
 import qrcode from '../assets/images/qrcode.png'
