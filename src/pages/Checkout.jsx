@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import Hyundai from '../assets/images/Hyundai.png'
 
 const Checkout = () => {
 
@@ -66,7 +67,7 @@ const Checkout = () => {
                                 <div className='flex justify-between  max-sm:flex-col'>
                                     <div className='flex items-center gap-5 max-sm:flex-col'>
                                         <div className='w-[128] h-21 rounded-xl bg-white '>
-                                            <img src="../src/assets/images/Hyundai.png" alt="" width={120} height={63} className='p-2' />
+                                            <img src={Hyundai} alt="" width={120} height={63} className='p-2' />
                                         </div>
                                         <div className='flex flex-col items-start'>
                                             <h1 className='text-xl font-semibold font-Roboto max-sm:text-[15px]'>Hyundai i30</h1>

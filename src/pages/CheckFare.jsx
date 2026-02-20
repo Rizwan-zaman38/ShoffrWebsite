@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { cars } from '../constants/variable';
 import { Link } from 'react-router-dom';
+import icon1 from '../assets/icons/icon1.png'
+import icon2 from '../assets/icons/icon2.png'
+import icon3 from '../assets/icons/icon3.png'
 
 const CheckFare = () => {
 
@@ -87,17 +90,17 @@ const CheckFare = () => {
                     <div>
                         <div className='flex flex-col justify-center items-center max-md:flex-col my-10'>
                             <div className='flex flex-col items-center my-5'>
-                                <img src="../src/assets/icons/icon1.png" alt='icon1' width={48} height={48} />
+                                <img src={icon1} alt='icon1' width={48} height={48} />
                                 <h3 className="mt-5 font-Roboto text-3xl leading-normal font-semibold max-sm:text-xl">Professional drivers</h3>
                                 <p className="font-Roboto p-3">Trained experts who prioritize your comfort and safety.</p>
                             </div>
                             <div className='flex flex-col items-center my-5'>
-                                <img src="../src/assets/icons/icon2.png" alt='icon1' width={48} height={48} />
+                                <img src={icon2} alt='icon1' width={48} height={48} />
                                 <h3 className="mt-5 font-Roboto text-3xl leading-normal font-semibold max-sm:text-xl">Luxury vehicles</h3>
                                 <p className="font-Roboto p-3">Clean, modern fleet with premium amenities.</p>
                             </div>
                             <div className='flex flex-col items-center my-5'>
-                                <img src="../src/assets/icons/icon3.png" alt='icon1' width={48} height={48} />
+                                <img src={icon3} alt='icon1' width={48} height={48} />
                                 <h3 className="mt-5 font-Roboto text-3xl leading-normal font-semibold max-sm:text-xl">Reliable service</h3>
                                 <p className="font-Roboto p-3">Punctual and dependable transportation for every need.</p>
                             </div>

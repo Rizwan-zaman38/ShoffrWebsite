@@ -1,11 +1,17 @@
 import React from 'react'
+import companylogo from '../assets/images/companylogo.png'
+import facebook from '../assets/icons/Facebook.png'
+import instagram from '../assets/icons/instagram.png'
+import X from '../assets/icons/X.png'
+import LinkedIn from '../assets/icons/LinkedIn.png'
+import Youtube from '../assets/icons/Youtube.png'
 
 const Footer = () => {
   return (
     <footer>
       <div className='py-10 max-md:py-5'>
         <div className='flex justify-between items-center px-10 max-md:flex-col max-md:px-5 max-md:gap-5'>
-          <img src="../src/assets/images/Company Logo.png" alt="logo" />
+          <img src={companylogo} alt="logo" />
           <div className=' md:flex justify-between items-center'>
             <div className='grid grid-cols-3 space-x-10 font-Roboto max-sm:grid-cols-2 lg:grid-cols-4 md:gap-8 max-md:gap-5 max-md:py-5'>
               <div>
@@ -41,11 +47,11 @@ const Footer = () => {
             </div>
           </div>
           <div className='flex gap-2'>
-            <img src="../src/assets/icons/Facebook.png" alt="facebook" className='cursor-pointer'/>
-            <img src="../src/assets/icons/instagram.png" alt="facebook" className='cursor-pointer'/>
-            <img src="../src/assets/icons/X.png" alt="facebook" className='cursor-pointer'/>
-            <img src="../src/assets/icons/LinkedIn.png" alt="facebook" className='cursor-pointer'/>
-            <img src="../src/assets/icons/Youtube.png" alt="facebook" className='cursor-pointer'/>
+            <img src={facebook} alt="facebook" className='cursor-pointer'/>
+            <img src={instagram} alt="facebook" className='cursor-pointer'/>
+            <img src={X} alt="facebook" className='cursor-pointer'/>
+            <img src={LinkedIn} alt="facebook" className='cursor-pointer'/>
+            <img src={Youtube} alt="facebook" className='cursor-pointer'/>
           </div>
         </div>
         <div className='flex justify-center items-center my-10 text-[#D4C5A0]'>
