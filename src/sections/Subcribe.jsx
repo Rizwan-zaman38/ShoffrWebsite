@@ -15,8 +15,8 @@ const Subcribe = () => {
             <h1 className='text-5xl font-semibold max-sm:text-4xl py-2 text-[#D4C5A0]'>Download the app</h1>
           </div>
           <div className='flex text-[#D4C5A0] justify-center mt-5 gap-10'>
-            <button className='flex gap-3 font-Roboto border border-[#D4C5A0] py-3 px-6 hover:bg-slate-500 cursor-pointer rounded-3xl'><img src={apple} alt="apple" width={20} height={20} /> App Store</button>
-            <button className='flex gap-3 font-Roboto border border-[#D4C5A0] py-3 px-6 hover:bg-slate-500 cursor-pointer rounded-3xl'><img src={play} alt="play" width={20} height={20} /> Google Play</button>
+            <button className='flex gap-3 font-Roboto border border-[#D4C5A0] py-3 px-6 hover:bg-slate-500 cursor-pointer rounded-3xl max-sm:px-3 max-sm:py-1'><img src={apple} alt="apple" width={20} height={20} /> App Store</button>
+            <button className='flex gap-3 font-Roboto border border-[#D4C5A0] py-3 px-6 hover:bg-slate-500 cursor-pointer rounded-3xl max-sm:px-3 max-sm:py-1'><img src={play} alt="play" width={20} height={20} /> Google Play</button>
           </div>
         </div>
         <div className='flex justify-center items-center max-md:mt-5'>

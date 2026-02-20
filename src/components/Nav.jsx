@@ -5,7 +5,7 @@ import companylogo from '../assets/images/companylogo.png'
 const Nav = () => {
     const [isOpen, setisOpen] = useState(false);
     return (
-        <header className='w-full h-[18] bg-white'>
+        <div className='w-full h-[18] bg-white'>
             <nav className='flex justify-between items-center py-4 px-16 '>
                 <div>
                     <img src={companylogo} alt="logo" />
@@ -38,7 +38,7 @@ const Nav = () => {
                         <button className='font-Roboto border bg-black text-white py-2 px-5 hover:bg-slate-400 cursor-pointer'>Contact</button>
                     </div>
                 </div>
-        </header>
+        </div>
     )
 }
 
