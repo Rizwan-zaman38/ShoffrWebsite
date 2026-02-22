@@ -6,7 +6,7 @@ const TimeInput = ({ pickupTime, setPickupTime }) => {
     return (
         <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-2xl shadow-sm">
             <Clock3 className="w-5 h-5 text-black" />
-            <select className='w-full text-black cursor-pointer'
+            <select className='w-full text-black focus:outline-none cursor-pointer'
                 value={pickupTime}
                 onChange={(e) => setPickupTime(e.target.value)}
                 required>

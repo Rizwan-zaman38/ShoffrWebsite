@@ -58,7 +58,7 @@ const Checkout = () => {
         <section id='booking'>
             <div className='flex justify-center flex-col items-center text-center w-full bg-black border border-[#D4C5A0] pt-5'>
                 <div className='flex flex-col gap-8 justify-center items-center px-3 max-sm:mt-5 min-w-sm max-w-3xl'>
-                    <h1 className='text-5xl text-white font-semibold max-sm:text-4xl py-2'>Check-Out Your <span className='font-Script text-[#D4C5A0]'>Comfort</span></h1>
+                    <h1 className='text-white text-3xl font-bold max-sm:text-2xl md:text-4xl py-2'>Check-Out Your <span className='font-Script text-[#D4C5A0]'>Comfort</span></h1>
                 </div>
                 <div className='w-[85%] bg-white mx-auto rounded-2xl my-10 max-sm:w-[90%]'>
                     {
@@ -81,16 +81,16 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                     <div className='max-sm:mt-3'>
-                                        <h1 className='text-2xl font-Roboto font-bold'>$650.50</h1>
+                                        <h1 className='text-2xl font-Roboto font-bold max-sm:text-[16px]'>$650.50</h1>
                                         <p className='font-Roboto text-[12px] text-gray-600'>Inc. All Charges</p>
                                     </div>
 
                                 </div>
                                 <hr className='text-gray-300 my-5' />
                                 <div>
-                                    <input type="text" name="coupon" placeholder='Enter coupon code' className='w-[90%] border border-gray-300 focus:outline-none rounded-xl py-3 px-5' />
+                                    <input type="text" name="coupon" placeholder='Enter coupon code' className='w-[90%] border border-gray-300 focus:outline-none rounded-xl py-3 px-5 max-sm:py-1 max-sm:px-2' />
                                     <button
-                                        className="bg-[#f8d376] text-black font-medium py-3 px-5 mt-3 ms-2 cursor-pointer rounded-xl hover:bg-[#c3b38f] transition">Apply</button>
+                                        className="bg-[#f8d376] text-black font-medium py-3 px-5 mt-3 ms-2 max-sm:mt-1 max-sm:py-1 max-sm:px-2 cursor-pointer rounded-xl hover:bg-[#c3b38f] transition">Apply</button>
                                 </div>
                                 <hr className='text-gray-300 my-5' />
                                 <div className='flex justify-between'>
@@ -132,7 +132,7 @@ const Checkout = () => {
                             >
                                 <div>
                                     <h1 className='text-xl font-Roboto font-bold text-left'>Contact Information</h1>
-                                    <div className='grid grid-cols-2 gap-4 my-4 max-md:grid-cols-1 max-sm:gap-1'>
+                                    <div className='grid grid-cols-2 gap-4 my-4 max-md:grid-cols-1 max-sm:gap-1 max-sm:my-2'>
                                         <div className='flex flex-col font-Roboto'>
                                             <label className='text-start text-[14px] text-gray-600 mb-2'>First Name*</label>
                                             <input
@@ -176,7 +176,7 @@ const Checkout = () => {
                                         onChange={(e) => setAddress(e.target.value)}
                                         type="text" placeholder='Street address*' className='w-full border border-gray-300 focus:outline-none rounded-xl py-3 px-5 my-2' />
                                     <div className="flex items-center">
-                                        <select className='w-full border border-gray-300 focus:outline-none rounded-xl py-3 px-5 my-2 cursor-pointer '
+                                        <select className='w-full border border-gray-300 focus:outline-none rounded-xl py-3 px-5 my-2 max-sm:my-1 cursor-pointer '
                                             value={country}
                                             onChange={(e) => setCountry(e.target.value)}
                                             required>
@@ -190,17 +190,17 @@ const Checkout = () => {
                                             value={city}
                                             onChange={(e) => setCity(e.target.value)}
                                             required
-                                            type="text" placeholder='City*' className='w-full border border-gray-300 focus:outline-none rounded-xl py-3 px-5 my-2' />
+                                            type="text" placeholder='City*' className='w-full border border-gray-300 focus:outline-none rounded-xl py-3 px-5 my-2 max-sm:my-1' />
                                         <input
                                             value={province}
                                             onChange={(e) => setProvince(e.target.value)}
                                             required
-                                            type="text" placeholder='State/Province*' className='w-full border border-gray-300 focus:outline-none rounded-xl py-3 px-5 my-2' />
+                                            type="text" placeholder='State/Province*' className='w-full border border-gray-300 focus:outline-none rounded-xl py-3 px-5 my-2 max-sm:my-1' />
                                         <input
                                             value={postalcode}
                                             onChange={(e) => setPostalcode(e.target.value)}
                                             required
-                                            type="text" placeholder='Postal code*' className='w-full border border-gray-300 focus:outline-none rounded-xl py-3 px-5 my-2' />
+                                            type="text" placeholder='Postal code*' className='w-full border border-gray-300 focus:outline-none rounded-xl py-3 px-5 my-2 max-sm:my-1' />
                                     </div>
 
                                 </div>

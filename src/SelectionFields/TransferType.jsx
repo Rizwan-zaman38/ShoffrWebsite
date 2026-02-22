@@ -6,7 +6,7 @@ const TransferType = ({ transferType, setTransferType }) => {
     return (
         <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-2xl shadow-sm">
             <Car className="w-5 h-5 text-black" />
-            <select className='w-full text-black cursor-pointer'
+            <select className='w-full text-black focus:outline-none cursor-pointer'
                 value={transferType}
                 onChange={(e) => setTransferType(e.target.value)}
                 required >

@@ -19,8 +19,6 @@ const Home = () => {
             <section><Team /></section>
             <section><SpecialOffer /></section>
             <section><Fleet1 /></section>
-            <section><Fleet2 /></section>
-            <section><Tour /></section>
             <section><Services /></section>
             <section><Booking /></section>
             <section><FAQS /></section>

@@ -5,12 +5,12 @@ const Question = ({data,onClick,isOpen}) => {
         <div>
             <div className='px-2 my-4 overflow-hidden'>
             <div className='flex justify-between text-white'>
-                <p>{data.question}</p>
+                <p className='font-sans text-[16px] max-sm:text-[12px]'>{data.question}</p>
                 <a onClick={onClick}><i class={`fa-solid fa-chevron-down opacity-60 cursor-pointer ${isOpen? "rotate-180": ""}`}></i></a>
             </div>
-            <p className={`text-white opacity-60 ease-in-out duration-500 ${isOpen? "max-h-96":"max-h-0"}`}>{data.answer}</p>
+            <p className={`text-white font-sans text-[16px] max-sm:text-[12px] opacity-60 ease-in-out duration-500 ${isOpen? "max-h-96":"max-h-0"}`}>{data.answer}</p>
         </div>
-        <hr className='text-white mt-7 opacity-20' />
+        <hr className='text-white mt-7 opacity-20 max-sm:mt-2' />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { GoogleMap, LoadScript, Marker, useJsApiLoader } from '@react-google-maps/api'
-import { Car, Clock, Map, Calendar, MapPin, FileText } from "lucide-react";
+import { Car, Clock, Calendar, MapPin, FileText } from "lucide-react";
 import TimeInput from '../SelectionFields/TimeInput';
 import TransferType from '../SelectionFields/TransferType';
 import ExtraStop from '../SelectionFields/ExtraStop';
@@ -113,9 +113,9 @@ const Booking = () => {
   return (
     <section id='booking'>
       <div className='flex justify-center flex-col items-center text-center w-full text-white bg-black border border-[#D4C5A0] pt-10'>
-        <div className='flex flex-col gap-8 justify-center items-center px-3 mt-20 max-sm:mt-10 min-w-sm max-w-3xl'>
-          <h1 className='text-5xl font-semibold max-sm:text-4xl py-2'>Book You <span className='font-Script text-[#D4C5A0]'>Comfort</span></h1>
-          <p className='primary-secondary px-3'>Book your premium ride now and discover transportation that truly understands your needs.</p>
+        <div className='flex flex-col gap-5 justify-center items-center px-3 mt-10 max-sm:mt-10 min-w-sm max-w-3xl'>
+          <h1 className='text-3xl font-bold max-sm:text-2xl md:text-4xl py-2'>Book You <span className='font-Script text-[#D4C5A0]'>Comfort</span></h1>
+          <p className='text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base'>Book your premium ride now and discover transportation that truly understands your needs.</p>
         </div>
         <div className='w-[77%] bg-white mx-auto rounded-2xl my-10 max-sm:w-[90%]'>
           <div className='p-10 max-sm:p-4'>
@@ -129,13 +129,13 @@ const Booking = () => {
 
           </div>
           <div className='p-10 max-sm:p-4'>
-            <div className=" flex items-center justify-center">
+            <div className=" flex items-center justify-center text-[14px] max-sm:text-[12px]">
               <form
                 onSubmit={handleSubmit}
-                className=" py-6 md:py-8 rounded-3xl w-full"
+                className=" py-6 md:py-8 rounded-3xl w-full max-sm:py-4"
               >
                 {/* Top Tabs */}
-                <div className="flex justify-between mb-6 max-sm:flex-col">
+                <div className="flex justify-between mb-6 max-sm:mb-3 max-sm:flex-col">
                   {[
                     { name: "Book by Distance", icon: <Car className="w-5 h-5 max-sm:hidden" /> },
                     { name: "Book Hourly", icon: <Clock className="w-5 h-5 max-sm:hidden" /> },
@@ -144,7 +144,7 @@ const Booking = () => {
                       key={tab.name}
                       type="button"
                       onClick={() => setActiveTab(tab.name)}
-                      className={`flex items-center justify-center gap-2 px-6 py-3 rounded-2xl w-full transition-all duration-200 cursor-pointer ${activeTab === tab.name
+                      className={`flex items-center justify-center gap-2 px-6 py-3 max-sm:px-3 max-sm:py-2 rounded-2xl w-full transition-all duration-200 cursor-pointer ${activeTab === tab.name
                         ? "bg-white shadow-md text-black"
                         : "bg-transparent text-gray-600 hover:text-black"
                         }`}
@@ -155,7 +155,7 @@ const Booking = () => {
                   ))}
                 </div>
 
-                <div className="flex flex-col justify-around gap-2 mb-4 md:flex-row">
+                <div className="flex flex-col justify-around gap-2 mb-4 max-sm:mb-2 md:flex-row">
                   <AirportPickup
                     airportPickup={airportPickup}
                     setAirportPickup={setAirportPickup}
@@ -168,7 +168,7 @@ const Booking = () => {
                   />
                 </div>
 
-                <div className="space-y-4 mb-4">
+                <div className="space-y-4 mb-4 max-sm:mb-2 max-sm:space-y-2">
                   <div className="flex items-center gap-2 bg-gray-50 p-3 rounded-2xl shadow-sm">
                     <MapPin className="w-5 h-5 text-gray-600" />
                     <input
@@ -197,9 +197,9 @@ const Booking = () => {
                 </div>
 
 
-                <div className="grid grid-cols-2 gap-4 mb-4 max-md:grid-cols-1">
+                <div className="grid grid-cols-2 gap-4 max-sm:gap-1 mb-4 max-sm:mb-2 max-md:grid-cols-1">
                   <div>
-                    <h2 className='text-gray-600 flex font-Roboto justify-start text-[16px]'>PickUp Date</h2>
+                    <h2 className='text-gray-600 flex font-Roboto justify-start'>PickUp Date</h2>
                     <div className="flex items-center gap-2 bg-gray-50 p-3 rounded-2xl shadow-sm">
                       <Calendar className="w-5 h-5 text-gray-600" />
                       <input
@@ -222,7 +222,7 @@ const Booking = () => {
                 </div>
 
 
-                <div className="grid grid-cols-2 gap-4 mb-4 max-md:grid-cols-1">
+                <div className="grid grid-cols-2 gap-4 max-sm:gap-2 mb-4 max-sm:mb-2 max-md:grid-cols-1">
                   <TransferType
                     transferType={transferType}
                     setTransferType={setTransferType}
