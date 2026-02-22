@@ -15,7 +15,7 @@ const Fleet1 = () => {
           <img src={fleet1BigImg} alt="fleet1bigImg" />
         </div>
         <div className='flex justify-center items-center text-center'>
-          <div className='flex flex-col gap-4 justify-center items-center px-3 my-20 max-sm:my-10 min-w-sm max-w-240'>
+          <div className='flex flex-col gap-4 justify-center items-center px-3 my-20 max-sm:my-10 max-w-240'>
             <div className='md:px-10'>
               <h1 className='text-3xl font-bold max-sm:text-2xl md:text-4xl py-3'>Explore Our Fleet</h1>
               <p className='text-gray-600 mb-6 sm:mb-8 max-w-2xl px-1 text-sm sm:text-base'>Shoffr brings you a wide range of cars to suit your mood, plan, or purpose. Whether you need a sleek sedan, a comfortable SUV, or a luxurious ride, we’ve got you covered. Our clean and well-maintained cars are ready to take you on a smooth, stress-free journey. Book now, we’ll take care of the rest.</p>
