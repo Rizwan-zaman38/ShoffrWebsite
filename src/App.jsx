@@ -9,7 +9,7 @@ import Checkout from './pages/Checkout'
 
 const App = () => {
   return (
-    <main>
+    <main className='w-full overflow-x-hidden'>
       <Nav />
       <Routes>
         <Route path='/' element={<Home />} />
