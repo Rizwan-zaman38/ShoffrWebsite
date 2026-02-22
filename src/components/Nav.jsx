@@ -6,7 +6,7 @@ import { Car, Phone, Info, Briefcase, Smartphone } from 'lucide-react';
 const Nav = () => {
     const [isOpen, setisOpen] = useState(false);
     return (
-        <div className='w-full h-[18] bg-white ' >
+        <div className='w-full h-20 bg-white ' >
             <nav className='flex justify-between items-center py-1 px-16 '>
                 <div>
                     <img src={companylogo} alt="logo" width={70} height={70}/>
