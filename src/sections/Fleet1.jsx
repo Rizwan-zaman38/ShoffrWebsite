@@ -29,7 +29,7 @@ const Fleet1 = () => {
               <img src={car6} alt="" className='w-53 h-40 rounded-4xl max-sm:w-40 max-sm:h-30' />
             </div>
             <div className=' py-5'>
-            <a href='#booking' className='font-sans text-[16px] bg-[#D4C5A0] py-3 px-8 rounded-sm hover:bg-slate-600 cursor-pointer max-sm:py-1 max-sm:px-3'>Book Now</a>
+            <a href='#booking' className='font-sans text-[16px] bg-[#D4C5A0] py-3 px-8 rounded-sm hover:bg-slate-600 cursor-pointer max-sm:py-1 max-sm:px-3 max-sm:text-[14px]'>Book Now</a>
             </div>
           </div>
         </div>

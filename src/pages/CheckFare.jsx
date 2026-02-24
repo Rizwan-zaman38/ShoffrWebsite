@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { cars } from '../constants/variable';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import icon1 from '../assets/icons/icon1.png'
 import icon2 from '../assets/icons/icon2.png'
 import icon3 from '../assets/icons/icon3.png'
 
 const CheckFare = () => {
 
+    const navigate = useNavigate();
+
     const [booking, setbooking] = useState(null);
+    const [basefare, setBasefare] = useState(null);
 
     useEffect(() => {
         const data = localStorage.getItem("Booking Data");
@@ -15,6 +18,18 @@ const CheckFare = () => {
             setbooking(JSON.parse(data))
         };
     }, []);
+
+    const calculateBaseFare = (ratePerKm) => {
+        if (!booking || !booking.calculatedDistance) {
+            console.error("Booking data not available");
+            return;
+        }
+
+        const fare = Math.floor(ratePerKm * booking.calculatedDistance);
+        setBasefare(fare);
+
+        return fare;
+    };
 
     return (
         <section>
@@ -39,15 +54,15 @@ const CheckFare = () => {
                                         </div>
                                         <div className=' flex flex-col justify-center items-center py-2 px-4 bg-[#D4C5A0]/30 rounded-2xl lg:w-[30%]'>
                                             <h1 className='font-semibold max-sm:text-[15px]'>Pickup Location</h1>
-                                            <p className='font-Roboto max-sm:text-[13px]'>{booking.airportPickup}</p>
+                                            <p className='font-Roboto max-sm:text-[13px]'>{booking.pickup}</p>
                                         </div>
                                         <div className=' flex flex-col justify-center items-center py-2 px-4 bg-[#D4C5A0]/30 rounded-2xl lg:w-[30%]'>
                                             <h1 className='font-semibold max-sm:text-[15px]'>Drop-off Location</h1>
-                                            <p className='font-Roboto max-sm:text-[13px]'>{booking.airportDropOff}</p>
+                                            <p className='font-Roboto max-sm:text-[13px]'>{booking.dropoff}</p>
                                         </div>
                                         <div className=' flex flex-col justify-center items-center py-2 px-4 bg-[#D4C5A0]/30 rounded-2xl lg:w-[30%]'>
                                             <h1 className='font-semibold max-sm:text-[15px]'>Total time</h1>
-                                            <p className='font-Roboto max-sm:text-[13px]'>3 hr 30 min</p>
+                                            <p className='font-Roboto max-sm:text-[13px]'>{booking.calculatedDuration}</p>
                                         </div>
                                         <div className=' flex flex-col justify-center items-center py-2 px-4 bg-[#D4C5A0]/30 rounded-2xl lg:w-[30%]'>
                                             <h1 className='font-semibold max-sm:text-[15px]'>Extra Stop</h1>
@@ -55,7 +70,7 @@ const CheckFare = () => {
                                         </div>
                                         <div className=' flex flex-col justify-center items-center py-2 px-4 bg-[#D4C5A0]/30 rounded-2xl lg:w-[30%]'>
                                             <h1 className='font-semibold max-sm:text-[15px]'>Total Kilometer</h1>
-                                            <p className='font-Roboto max-sm:text-[13px]'>123.2 KM</p>
+                                            <p className='font-Roboto max-sm:text-[13px]'>{booking.calculatedDistance} KM</p>
                                         </div>
                                     </div>
                                 ) : (
@@ -78,10 +93,38 @@ const CheckFare = () => {
                                                 <p className='font-Roboto max-sm:text-[12px]'>{car.seats} | {car.luggage}</p>
                                             </div>
                                         </div>
-                                        <div>
-                                            <p className='font-bold max-sm:text-[14px]'>${car.rateperkm}</p>
-                                            <button className='bg-[#D4C5A0] px-6 py-2 text-white rounded-sm mt-5 cursor-pointer font-sans text-[16px] hover:bg-slate-600 max-sm:py-1 max-sm:px-3'><Link to="/checkout">Select</Link></button>
-                                        </div>
+                                        {
+                                            booking ? (
+                                                <div>
+                                                    <p className='font-bold max-sm:text-[14px]'>${Math.floor(car.rateperkm*booking.calculatedDistance)}</p>
+                                                    <button
+                                                        onClick={() => {
+                                                            calculateBaseFare(car.rateperkm); 
+                                                            const fare = Math.floor(car.rateperkm * booking.calculatedDistance);
+
+                                                            
+                                                            const carPrice = {
+                                                                fare,
+                                                                car: car.name,
+                                                            };
+
+                                                            localStorage.setItem("Car price", JSON.stringify(carPrice));
+
+                                                            // alert(
+                                                            //     `Booking Summary:
+                                                            //      Car: ${car.name}
+                                                            //      Base Fare: $${fare}
+                                                            //      `
+                                                            // );
+
+                                                            navigate("/checkout");
+                                                        }}
+                                                        className='bg-[#D4C5A0] px-6 py-2 text-white rounded-sm mt-5 cursor-pointer font-sans text-[14px] hover:bg-slate-600 max-sm:py-1 max-sm:px-3'>Select</button>
+                                                </div>
+                                            ) : (
+                                                <p>Booking data not found</p>
+                                            )
+                                        }
                                     </div>
                                 ))
                             }

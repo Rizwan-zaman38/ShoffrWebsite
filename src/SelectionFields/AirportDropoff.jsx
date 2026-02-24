@@ -9,7 +9,7 @@ const AirportDropoff = ({ airportDropOff, setAirportDropOff }) => {
             <select className='w-full text-gray-600 font-semibold focus:outline-none cursor-pointer'
                 value={airportDropOff}
                 onChange={(e) => setAirportDropOff(e.target.value)}
-                required >
+                 >
                 <option value="" disabled selected hidden >Select Airport as Drop-off</option>
                 {
                     Airports.map((airport) => (

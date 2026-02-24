@@ -8,8 +8,8 @@ const Hero = () => {
           <h1 className='text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl py-3'><span className='font-serif italic text-[#D4C5A0]'>Premium</span> rides that <br /> move you forward</h1>
           <p className=' text-base text-gray-300 py-3 sm:text-lg'>Experience the gold standard of transportation. Professional drivers,<br class="hidden sm:block"/> pristine vehicles, and unmatched reliability for every journey.</p>
           <div className='flex gap-4 py-3'>
-            <a href='#booking' className='font-sans text-[16px] bg-[#D4C5A0] py-3 px-8 rounded-sm hover:bg-slate-600 cursor-pointer max-sm:py-1 max-sm:px-3'>Book Now</a>
-            <a href='#booking' className='font-sans text-[16px] border border-[#D4C5A0] py-3 px-8 rounded-sm hover:bg-slate-600 cursor-pointer max-sm:py-1 max-sm:px-3'>Get Discount</a>
+            <a href='#booking' className='font-sans text-[16px] bg-[#D4C5A0] py-3 px-8 rounded-sm hover:bg-slate-600 cursor-pointer max-sm:py-1 max-sm:px-3 max-sm:text-[14px]'>Book Now</a>
+            <a href='#booking' className='font-sans text-[16px] border border-[#D4C5A0] py-3 px-8 rounded-sm hover:bg-slate-600 cursor-pointer max-sm:py-1 max-sm:px-3 max-sm:text-[14px]'>Get Discount</a>
           </div>
         </div>
       </div>

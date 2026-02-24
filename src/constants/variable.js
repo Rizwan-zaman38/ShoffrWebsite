@@ -86,13 +86,13 @@ export const TransferRoute = [
 ];
 
 export const ExtraStops = [
-  { value: "No Extra Stop", label: "No Extra Stop" },
-  { value: "1 Extra Stop", label: "1 Extra Stop" },
-  { value: "2 Extra Stops", label: "2 Extra Stops" },
-  { value: "3 Extra Stops", label: "3 Extra Stops" },
-  { value: "4 Extra Stops", label: "4 Extra Stops" },
-  { value: "5 Extra Stops", label: "5 Extra Stops" },
-  { value: "6 Extra Stops", label: "6 Extra Stops" },
+  { value: 0, label: "No Extra Stop" },
+  { value: 1, label: "1 Extra Stop" },
+  { value: 2, label: "2 Extra Stops" },
+  { value: 3, label: "3 Extra Stops" },
+  { value: 4, label: "4 Extra Stops" },
+  { value: 5, label: "5 Extra Stops" },
+  { value: 6, label: "6 Extra Stops" },
 ];
 
 export const Seats = [

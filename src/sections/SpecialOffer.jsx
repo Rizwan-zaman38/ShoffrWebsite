@@ -8,8 +8,8 @@ const SpecialOffer = () => {
           <h1 className='text-2xl font-bold lg:text-5xl md:text-3xl sm:text-2xl py-3'>Discount up to 10% only for new Member</h1>
           <p className='text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base'>Unlock Exclusive Savings! Join us as a new member and enjoy an instant 10% discount on your first purchase. Elevate your experience with premium offerings at an unbeatable value</p>
           <div className='flex gap-4 py-3'>
-            <a href='#booking' className='font-sans text-[16px] bg-[#D4C5A0] py-3 px-8 rounded-sm hover:bg-slate-600 cursor-pointer max-sm:py-1 max-sm:px-3'>Book Now</a>
-            <a href='#booking' className='font-sans text-[16px] border border-[#D4C5A0] py-3 px-8 rounded-sm hover:bg-slate-600 cursor-pointer max-sm:py-1 max-sm:px-3'>Get Discount</a>
+            <a href='#booking' className='font-sans text-[16px] bg-[#D4C5A0] py-3 px-8 rounded-sm hover:bg-slate-600 cursor-pointer max-sm:py-1 max-sm:px-3 max-sm:text-[14px]'>Book Now</a>
+            <a href='#booking' className='font-sans text-[16px] border border-[#D4C5A0] py-3 px-8 rounded-sm hover:bg-slate-600 cursor-pointer max-sm:py-1 max-sm:px-3 max-sm:text-[14px]'>Get Discount</a>
           </div>
         </div>
       </div>

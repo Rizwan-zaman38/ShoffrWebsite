@@ -1,5 +1,8 @@
-import React, { useRef, useState } from 'react'
-import { GoogleMap, LoadScript, Marker, useJsApiLoader } from '@react-google-maps/api'
+import React, { useEffect, useState } from 'react'
+import mbxClient from '@mapbox/mapbox-sdk';
+import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
+import mbxDirections from '@mapbox/mapbox-sdk/services/directions';
+import mapboxgl from "mapbox-gl";
 import { Car, Clock, Calendar, MapPin, FileText } from "lucide-react";
 import TimeInput from '../SelectionFields/TimeInput';
 import TransferType from '../SelectionFields/TransferType';
@@ -9,15 +12,6 @@ import AirportDropoff from '../SelectionFields/AirportDropoff';
 import AirportPickup from '../SelectionFields/AirportPickup';
 import { useNavigate } from 'react-router-dom';
 
-const PinPoint = {
-  lat: 31.5204,
-  lng: 74.3587,
-}
-const mapStyle = {
-  width: '100%',
-  height: '365px',
-  borderRadius: '16px'
-}
 
 const Booking = () => {
 
@@ -33,48 +27,104 @@ const Booking = () => {
   const [transferType, setTransferType] = useState("");
   const [extraStop, setExtraStop] = useState("");
   const [passengers, setPassengers] = useState(1);
-  const [distance, setDistance] = useState('')
-  const [duration, setDuration] = useState('')
 
+  const accessToken = 'pk.eyJ1IjoiYWJkdWwtYWhhZDEiLCJhIjoiY21oMGozYmNrMjFidTJ3czJ4ZTNhZmdkbSJ9.1nRhT2Op7HkIfWEcxk_zMw';
 
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: 'AIzaSyDsB8YMOeQ3OEfu-0wXHx4ufVcZSEQ3QH8',
-    libraries: ['places'],
-  })
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYWJkdWwtYWhhZDEiLCJhIjoiY21oMGozYmNrMjFidTJ3czJ4ZTNhZmdkbSJ9.1nRhT2Op7HkIfWEcxk_zMw';
 
-  const [directionsResponse, setDirectionsResponse] = useState(null)
-
-
-  const originRef = useRef()
-  const destiantionRef = useRef()
-
-  if (!isLoaded) {
-    return <p>Loading map...</p>
-  }
-
-  async function calculateRoute() {
-    if (originRef.current.value === '' || destiantionRef.current.value === '') {
-      return
+  useEffect(() => {
+    if (airportPickup) {
+      setPickup(airportPickup);
     }
-    // eslint-disable-next-line no-undef
-    const directionsService = new google.maps.DirectionsService()
-    const results = await directionsService.route({
-      origin: originRef.current.value,
-      destination: destiantionRef.current.value,
-      // eslint-disable-next-line no-undef
-      travelMode: google.maps.TravelMode.DRIVING,
-    })
-    setDirectionsResponse(results)
-    setDistance(results.routes[0].legs[0].distance.text)
-    setDuration(results.routes[0].legs[0].duration.text)
-  }
+  });
 
+  useEffect(() => {
+    if (airportDropOff) {
+      setDropoff(airportDropOff);
+    }
+  });
 
+  useEffect(() => {
+    const mapContainer = document.getElementById("map");
+    if (!mapContainer) return;
+
+    const map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/mapbox/streets-v11",
+      center: [74.3587, 31.5204], // Lahore
+      zoom: 10,
+    });
+
+    return () => map.remove();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    calculateRoute();
+    const baseClient = mbxClient({ accessToken });
+    const geocodingService = mbxGeocoding(baseClient);
+    const directionsService = mbxDirections(baseClient);
+
+    const getCoordinates = async (placeName) => {
+      const response = await geocodingService
+        .forwardGeocode({
+          query: placeName,
+          limit: 1,
+        })
+        .send();
+
+      const match = response.body.features[0];
+      return match.center;
+    };
+
+    const getDistanceAndDuration = async () => {
+      try {
+
+        const origin = await getCoordinates(pickup);
+        const destination = await getCoordinates(dropoff);
+
+        console.log('Origin:', origin);
+        console.log('Destination:', destination);
+
+        const response = await directionsService
+          .getDirections({
+            profile: 'driving',
+            geometries: 'geojson',
+            waypoints: [
+              { coordinates: origin },
+              { coordinates: destination },
+            ],
+          })
+          .send();
+
+        const route = response.body.routes[0];
+        const calculatedDistance = (route.distance / 1000).toFixed(2);
+
+        const totalminutes = (route.duration / 60).toFixed(2);
+        const hour = Math.floor(totalminutes / 60);
+        const minutes = Math.floor(totalminutes % 60);
+
+        const calculatedDuration = `${hour} hr, ${minutes} min`;
+
+        console.log(`Distance: ${calculatedDistance} km`);
+        console.log(`Duration: ${calculatedDuration} minutes`);
+
+        return { calculatedDistance, calculatedDuration }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    const result = await getDistanceAndDuration(pickup, dropoff);
+
+    if (!result) {
+      console.error("Failed to calculate route.");
+      return;
+    }
+
+    const { calculatedDistance, calculatedDuration } = result;
+
+    console.log(`The total distance is ${calculatedDistance} and the total duration is ${calculatedDuration}`)
 
     setTimeout(() => {
       const bookingData = {
@@ -82,30 +132,32 @@ const Booking = () => {
         pickupTime,
         airportPickup,
         airportDropOff,
-        distance,
-        duration,
+        pickup,
+        dropoff,
+        calculatedDistance,
+        calculatedDuration,
         extraStop,
       };
 
       localStorage.setItem("Booking Data", JSON.stringify(bookingData));
 
-      alert(
-        `Booking Summary:
-      Mode: ${activeTab}
-      Pickup Airport: ${airportPickup}
-      Dropoff Airport: ${airportDropOff}
-      Pickup: ${pickup}
-      Dropoff: ${dropoff}
-      Date: ${pickupDate}
-      Time: ${pickupTime}
-      Distance: ${distance}
-      Duration: ${duration}
-      Transfer Type: ${transferType}
-      Extra stop: ${extraStop}
-      Passengers: ${passengers}`
-      );
+      // alert(
+      //   `Booking Summary:
+      // Mode: ${activeTab}
+      // Pickup Airport: ${airportPickup}
+      // Dropoff Airport: ${airportDropOff}
+      // Pickup: ${pickup}
+      // Dropoff: ${dropoff}
+      // Date: ${pickupDate}
+      // Time: ${pickupTime}
+      // Distance: ${calculatedDistance}
+      // Duration: ${calculatedDuration}
+      // Transfer Type: ${transferType}
+      // Extra stop: ${extraStop}
+      // Passengers: ${passengers}`
+      // );
 
-      navigate("/checkfare");
+      setTimeout(() => navigate("/checkfare"), 1000);
 
     }, 1000)
   };
@@ -119,20 +171,15 @@ const Booking = () => {
         </div>
         <div className='w-[77%] bg-white mx-auto rounded-2xl my-10 max-sm:w-[90%]'>
           <div className='p-10 max-sm:p-4'>
+            <div id='map' className='w-full h-40 rounded-2xl sm:h-40 md:h-60 lg:h-91.25'>
 
-            <GoogleMap mapContainerStyle={mapStyle} center={PinPoint} zoom={12}>
-              <Marker position={PinPoint} />
-              {directionsResponse && (
-                <DirectionsRenderer directions={directionsResponse} />
-              )}
-            </GoogleMap>
-
+            </div>
           </div>
-          <div className='p-10 max-sm:p-4'>
+          <div className='px-10 py-4 max-sm:p-4 max-sm:pt-0'>
             <div className=" flex items-center justify-center text-[14px] max-sm:text-[12px]">
               <form
                 onSubmit={handleSubmit}
-                className=" py-6 md:py-8 rounded-3xl w-full max-sm:py-4"
+                className=" pb-6 md:pb-8 rounded-3xl w-full max-sm:pb-4"
               >
                 {/* Top Tabs */}
                 <div className="flex justify-between mb-6 max-sm:mb-3 max-sm:flex-col">
@@ -175,9 +222,8 @@ const Booking = () => {
                       type="text"
                       placeholder="Enter Pick Up Location"
                       className="flex-1 bg-transparent outline-none text-gray-700"
-                      value={pickup}
+                      value={airportPickup ? airportPickup : pickup}
                       onChange={(e) => setPickup(e.target.value)}
-                      ref={originRef}
                       required
                     />
                   </div>
@@ -188,8 +234,7 @@ const Booking = () => {
                       type="text"
                       placeholder="Enter Drop Off Location"
                       className="flex-1 bg-transparent outline-none text-gray-700"
-                      ref={destiantionRef}
-                      value={dropoff}
+                      value={airportDropOff ? airportDropOff : dropoff}
                       onChange={(e) => setDropoff(e.target.value)}
                       required
                     />
