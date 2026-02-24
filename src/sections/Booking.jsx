@@ -11,6 +11,7 @@ import Seats from '../SelectionFields/Seat';
 import AirportDropoff from '../SelectionFields/AirportDropoff';
 import AirportPickup from '../SelectionFields/AirportPickup';
 import { useNavigate } from 'react-router-dom';
+import dotenv from 'dotenv'
 
 
 const Booking = () => {
@@ -28,9 +29,9 @@ const Booking = () => {
   const [extraStop, setExtraStop] = useState("");
   const [passengers, setPassengers] = useState(1);
 
-  const accessToken = 'pk.eyJ1IjoiYWJkdWwtYWhhZDEiLCJhIjoiY21oMGozYmNrMjFidTJ3czJ4ZTNhZmdkbSJ9.1nRhT2Op7HkIfWEcxk_zMw';
+  const accessToken = import.meta.env.VITE_API_KEY;
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoiYWJkdWwtYWhhZDEiLCJhIjoiY21oMGozYmNrMjFidTJ3czJ4ZTNhZmdkbSJ9.1nRhT2Op7HkIfWEcxk_zMw';
+  mapboxgl.accessToken = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     if (airportPickup) {
