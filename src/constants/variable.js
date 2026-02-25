@@ -69,15 +69,15 @@ export const Data = [
 
 
 export const Airports = [
-  { value: "Sydney Airport - Terminal 1 (International)", label: "Sydney Airport - Terminal 1 (International)", lat: 33.9354, long: 151.1656 },
-  { value: "Sydney Airport - Terminal 2 (Domestic)", label: "Sydney Airport - Terminal 2 (Domestic)", lat: 33.9500, long: 151.1817 },
-  { value: "Sydney Airport - Terminal 3 (Domestic)", label: "Sydney Airport - Terminal 3 (Domestic)", lat: 33.9329, long: 151.1800 },
-  { value: "Bankstown Airport", label: "Bankstown Airport", lat: 33.9197, long: 150.9910 },
-  { value: "Melbourne Airport (MEL)", label: "Melbourne Airport (MEL)", lat: 37.6709, long: 144.8431 },
-  { value: "Brisbane Airport (BNE)", label: "Brisbane Airport (BNE)", lat: 27.3946, long: 153.1237 },
-  { value: "Perth Airport (PER)", label: "Perth Airport (PER)", lat: 31.9385, long: 115.9672 },
-  { value: "Adelaide Airport (ADL)", label: "Adelaide Airport (ADL)", lat: 34.9462, long: 138.5312 },
-  { value: "Canberra Airport (CBR)", label: "Canberra Airport (CBR)", lat: 35.3053, long: 149.1933 }
+  { value: "Jinnah International Airport (KHI), Karachi, Pakistan", label: "Jinnah International Airport (KHI) – Karachi" },
+  { value: "Allama Iqbal International Airport, Lahore, Pakistan", label: "Allama Iqbal International Airport (LHE) – Lahore" },
+  { value: "Islamabad International Airport (ISB), Islamabad, Pakistan", label: "Islamabad International Airport (ISB) – Islamabad" },
+  { value: "Bacha Khan International Airport (PEW), Peshawar, Pakistan", label: "Bacha Khan International Airport (PEW) – Peshawar" },
+  { value: "Quetta International Airport (UET), Quetta, Pakistan", label: "Quetta International Airport (UET) – Quetta" },
+  { value: "Multan International Airport (MUX), Multan, Pakistan", label: "Multan International Airport (MUX) – Multan" },
+  { value: "Faisalabad International Airport (LYP), Faisalabad, Pakistan", label: "Faisalabad International Airport (LYP) – Faisalabad" },
+  { value: "Sialkot International Airport (SKT), Sialkot, Pakistan", label: "Sialkot International Airport (SKT) – Sialkot" },
+  { value: "Skardu International Airport (KDU), Skardu, Pakistan", label: "Skardu International Airport (KDU) – Skardu" }
 ];
 
 export const TransferRoute = [

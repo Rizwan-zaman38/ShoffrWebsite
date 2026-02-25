@@ -37,13 +37,13 @@ const Booking = () => {
     if (airportPickup) {
       setPickup(airportPickup);
     }
-  });
+  }, [airportPickup]);
 
   useEffect(() => {
     if (airportDropOff) {
       setDropoff(airportDropOff);
     }
-  });
+  }, [airportDropOff]);
 
   useEffect(() => {
     const mapContainer = document.getElementById("map");
@@ -54,7 +54,7 @@ const Booking = () => {
       style: "mapbox://styles/mapbox/streets-v11",
       center: [74.3587, 31.5204], // Lahore
       zoom: 10,
-    });
+    });   
 
     return () => map.remove();
   }, []);
