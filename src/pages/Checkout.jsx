@@ -116,7 +116,7 @@ const Checkout = () => {
                                 <div>
                                     <input type="text" name="coupon" placeholder='Enter coupon code' className='w-[90%] text-[14px] max-sm:text-[12px] border border-gray-300 focus:outline-none rounded-xl py-3 px-5 max-sm:py-1 max-sm:px-2' />
                                     <button
-                                        className="bg-[#f8d376] text-black text-[14px] max-sm:text-[12px] font-medium py-3 px-5 mt-3 ms-2 max-sm:mt-1 max-sm:py-1 max-sm:px-2 cursor-pointer rounded-xl hover:bg-[#c3b38f] transition">Apply</button>
+                                        className="bg-[#f8d376] text-black text-[14px] max-sm:text-[12px] font-medium py-3 px-5 mt-3 ms-2 max-sm:mt-1 max-sm:py-1 max-sm:px-2 cursor-pointer rounded-xl hover:bg-[#c3b38f] transition ease-in-out duration-500 hover:scale-110">Apply</button>
                                 </div>
                                 <hr className='text-gray-300 my-5' />
                                 <div className='flex justify-between'>

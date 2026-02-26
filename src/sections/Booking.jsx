@@ -28,6 +28,9 @@ const Booking = () => {
   const [transferType, setTransferType] = useState("");
   const [extraStop, setExtraStop] = useState("");
   const [passengers, setPassengers] = useState(1);
+  const [map, setMap] = useState(null);
+  const [pickupMarker, setPickupMarker] = useState(null);
+  const [dropoffMarker, setDropoffMarker] = useState(null);
 
   const accessToken = import.meta.env.VITE_API_KEY;
 
@@ -46,6 +49,51 @@ const Booking = () => {
   }, [airportDropOff]);
 
   useEffect(() => {
+    if (!map || !pickup) return;
+
+    (async () => {
+      const coords = await getCoordinates(pickup);
+      if (!coords) return;
+
+      if (pickupMarker) pickupMarker.remove();
+
+      const marker = new mapboxgl.Marker({ color: "green" })
+        .setLngLat(coords)
+        .addTo(map);
+
+      setPickupMarker(marker);
+      map.flyTo({ center: coords, zoom: 12 });
+    })();
+  }, [pickup, map]);
+
+  useEffect(() => {
+    if (!map || !dropoff) return;
+
+    (async () => {
+      const coords = await getCoordinates(dropoff);
+      if (!coords) return;
+
+      if (dropoffMarker) dropoffMarker.remove();
+
+      const marker = new mapboxgl.Marker({ color: "red" })
+        .setLngLat(coords)
+        .addTo(map);
+
+      setDropoffMarker(marker);
+
+      // Fit both pickup & dropoff markers in view
+      if (pickupMarker) {
+        const bounds = new mapboxgl.LngLatBounds();
+        bounds.extend(pickupMarker.getLngLat());
+        bounds.extend(marker.getLngLat());
+        map.fitBounds(bounds, { padding: 100 });
+      } else {
+        map.flyTo({ center: coords, zoom: 12 });
+      }
+    })();
+  }, [dropoff, map]);
+
+  useEffect(() => {
     const mapContainer = document.getElementById("map");
     if (!mapContainer) return;
 
@@ -54,19 +102,22 @@ const Booking = () => {
       style: "mapbox://styles/mapbox/streets-v11",
       center: [74.3587, 31.5204], // Lahore
       zoom: 10,
-    });   
+    });
+
+    setMap(map);
 
     return () => map.remove();
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const baseClient = mbxClient({ accessToken });
+  const geocodingService = mbxGeocoding(baseClient);
+  const directionsService = mbxDirections(baseClient);
 
-    const baseClient = mbxClient({ accessToken });
-    const geocodingService = mbxGeocoding(baseClient);
-    const directionsService = mbxDirections(baseClient);
+  const getCoordinates = async (placeName) => {
 
-    const getCoordinates = async (placeName) => {
+    if (!placeName) return null;
+
+    try {
       const response = await geocodingService
         .forwardGeocode({
           query: placeName,
@@ -74,47 +125,54 @@ const Booking = () => {
         })
         .send();
 
-      const match = response.body.features[0];
-      return match.center;
-    };
+      const feature = response.body.features[0];
+      return feature ? feature.center : null;
+    } catch (error) {
+      console.error("Geocoding error:", error);
+      return null;
+    }
+  };
 
-    const getDistanceAndDuration = async () => {
-      try {
+  const getDistanceAndDuration = async () => {
+    try {
 
-        const origin = await getCoordinates(pickup);
-        const destination = await getCoordinates(dropoff);
+      const origin = await getCoordinates(pickup);
+      const destination = await getCoordinates(dropoff);
 
-        console.log('Origin:', origin);
-        console.log('Destination:', destination);
+      console.log('Origin:', origin);
+      console.log('Destination:', destination);
 
-        const response = await directionsService
-          .getDirections({
-            profile: 'driving',
-            geometries: 'geojson',
-            waypoints: [
-              { coordinates: origin },
-              { coordinates: destination },
-            ],
-          })
-          .send();
+      const response = await directionsService
+        .getDirections({
+          profile: 'driving',
+          geometries: 'geojson',
+          waypoints: [
+            { coordinates: origin },
+            { coordinates: destination },
+          ],
+        })
+        .send();
 
-        const route = response.body.routes[0];
-        const calculatedDistance = (route.distance / 1000).toFixed(2);
+      const route = response.body.routes[0];
+      const calculatedDistance = (route.distance / 1000).toFixed(2);
 
-        const totalminutes = (route.duration / 60).toFixed(2);
-        const hour = Math.floor(totalminutes / 60);
-        const minutes = Math.floor(totalminutes % 60);
+      const totalminutes = (route.duration / 60).toFixed(2);
+      const hour = Math.floor(totalminutes / 60);
+      const minutes = Math.floor(totalminutes % 60);
 
-        const calculatedDuration = `${hour} hr, ${minutes} min`;
+      const calculatedDuration = `${hour} hr, ${minutes} min`;
 
-        console.log(`Distance: ${calculatedDistance} km`);
-        console.log(`Duration: ${calculatedDuration} minutes`);
+      console.log(`Distance: ${calculatedDistance} km`);
+      console.log(`Duration: ${calculatedDuration} minutes`);
 
-        return { calculatedDistance, calculatedDuration }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
+      return { calculatedDistance, calculatedDuration }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     const result = await getDistanceAndDuration(pickup, dropoff);
 

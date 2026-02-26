@@ -78,7 +78,7 @@ const CheckFare = () => {
                                 )
                             }
 
-                            <button className='w-90 border border-[#D4C5A0] mb-3 py-2 rounded-3xl hover:bg-[#D4C5A0]'><Link to="/">Previous</Link></button>
+                            <button className='w-90 border border-[#D4C5A0] mb-3 py-2 rounded-3xl hover:bg-[#D4C5A0] transition ease-in-out duration-500 hover:scale-110'><Link to="/">Previous</Link></button>
                         </div>
                         <div className='bg-white rounded-2xl text-black mt-5 p-10'>
                             {
@@ -119,7 +119,7 @@ const CheckFare = () => {
 
                                                             navigate("/checkout");
                                                         }}
-                                                        className='bg-[#D4C5A0] px-6 py-2 text-white rounded-sm mt-5 cursor-pointer font-sans text-[14px] hover:bg-slate-600 max-sm:py-1 max-sm:px-3'>Select</button>
+                                                        className='bg-[#D4C5A0] px-6 py-2 text-white rounded-sm mt-5 cursor-pointer font-sans text-[14px] hover:bg-slate-600 max-sm:py-1 max-sm:px-3 transition ease-in-out duration-500 hover:scale-110'>Select</button>
                                                 </div>
                                             ) : (
                                                 <p>Booking data not found</p>

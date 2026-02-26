@@ -16,7 +16,7 @@ const Team = () => {
                         <a href='#fleet' className='font-sans border  border-[#D4C5A0] py-2 px-5 hover:bg-slate-500 rounded-sm sm:text-base max-sm:py-1 max-sm:px-3 cursor-pointer max-sm:text-[14px]'>Hire our ride</a>
                         </button>
                         <button className='transition ease-in-out duration-500 hover:scale-110'>
-                        <a href='#booking' className='font-sans py-2 px-5 hover:bg-slate-500 rounded-sm sm:text-base max-sm:py-1 max-sm:px-3 cursor-pointer max-sm:text-[14px]'>Learn more <i class="fa-solid fa-angle-right "></i></a>
+                        <a href='#booking' className='font-sans py-2 px-5 hover:bg-slate-500 rounded-sm sm:text-base max-sm:py-1 max-sm:px-3 cursor-pointer max-sm:text-[14px]'>Learn more <i className="fa-solid fa-angle-right "></i></a>
                         </button>
                     </div>
                     <div className="flex justify-center gap-8 pb-5 pt-12 ">
