@@ -11,9 +11,13 @@ const Team = () => {
                 <div className='flex flex-col gap-5 justify-center items-center px-3 mt-20 max-sm:gap-2 max-sm:mt-10 max-w-3xl'>
                     <h1 className='text-3xl font-bold max-sm:text-2xl md:text-4xl pb-3 sm:pb-4'>Professional drivers for every ride</h1>
                     <p className='text-gray-400 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base'>Our drivers are trained professionals who understand the art of exceptional service. Clean, courteous, and committed to your comfort.</p>
-                    <div className='flex justify-center gap-2'>
+                    <div className='flex justify-center gap-4'>
+                        <button className='transition ease-in-out duration-500 hover:scale-110 '>
                         <a href='#fleet' className='font-sans border  border-[#D4C5A0] py-2 px-5 hover:bg-slate-500 rounded-sm sm:text-base max-sm:py-1 max-sm:px-3 cursor-pointer max-sm:text-[14px]'>Hire our ride</a>
+                        </button>
+                        <button className='transition ease-in-out duration-500 hover:scale-110'>
                         <a href='#booking' className='font-sans py-2 px-5 hover:bg-slate-500 rounded-sm sm:text-base max-sm:py-1 max-sm:px-3 cursor-pointer max-sm:text-[14px]'>Learn more <i class="fa-solid fa-angle-right "></i></a>
+                        </button>
                     </div>
                     <div className="flex justify-center gap-8 pb-5 pt-12 ">
                         {tabs.map((tab) => (

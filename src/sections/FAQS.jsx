@@ -35,7 +35,7 @@ const FAQS = () => {
           <div className='flex text-white justify-center my-8 gap-3 flex-wrap'>
             {
               Category.map((cat) => (
-                <button key={cat} onClick={()=>setCategoryselect(cat)} className={`flex text-[14px] gap-3 font-Roboto border border-[#D4C5A0] px-3 sm:px-6 py-1 sm:py-2 max-sm:text-[12px] ${categoryselect === cat ? "bg-[#D4C5A0] text-black":""} cursor-pointer rounded-3xl`}>{cat}</button>
+                <button key={cat} onClick={()=>setCategoryselect(cat)} className={`flex text-[14px] gap-3 font-Roboto border border-[#D4C5A0] px-3 sm:px-6 py-1 sm:py-2 max-sm:text-[12px] transition ease-in-out duration-500 hover:scale-110 ${categoryselect === cat ? "bg-[#D4C5A0] text-black":""} cursor-pointer rounded-3xl`}>{cat}</button>
               ))
             }
           </div>
