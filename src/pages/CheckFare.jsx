@@ -52,6 +52,24 @@ const CheckFare = () => {
                                             <h1 className='font-semibold max-sm:text-[15px]'>Pickup Time</h1>
                                             <p className='font-Roboto max-sm:text-[13px]'>{booking.pickupTime}</p>
                                         </div>
+                                        {
+                                            booking.returndate ? (
+                                                <div className='flex flex-col justify-center items-center py-2 px-4 bg-[#D4C5A0]/30 rounded-2xl lg:w-[30%]'>
+                                                    <h1 className='font-semibold max-sm:text-[15px]'>Return Date</h1>
+                                                    <p className='font-Roboto max-sm:text-[13px]'>{booking.returndate}</p>
+                                                </div>
+                                            ) : (
+                                                ""
+                                            )
+                                        }
+                                        {
+                                            booking.returntime ? (
+                                                <div className=' flex flex-col justify-center items-center py-2 px-4 bg-[#D4C5A0]/30 rounded-2xl lg:w-[30%]'>
+                                                    <h1 className='font-semibold max-sm:text-[15px]'>Return Time</h1>
+                                                    <p className='font-Roboto max-sm:text-[13px]'>{booking.returntime}</p>
+                                                </div>
+                                            ) : ('')
+                                        }
                                         <div className=' flex flex-col justify-center items-center py-2 px-4 bg-[#D4C5A0]/30 rounded-2xl lg:w-[30%]'>
                                             <h1 className='font-semibold max-sm:text-[15px]'>Pickup Location</h1>
                                             <p className='font-Roboto max-sm:text-[13px]'>{booking.pickup}</p>
@@ -96,13 +114,13 @@ const CheckFare = () => {
                                         {
                                             booking ? (
                                                 <div>
-                                                    <p className='font-bold max-sm:text-[14px]'>${Math.floor(car.rateperkm*booking.calculatedDistance)}</p>
+                                                    <p className='font-bold max-sm:text-[14px]'>${Math.floor(car.rateperkm * booking.calculatedDistance)}</p>
                                                     <button
                                                         onClick={() => {
-                                                            calculateBaseFare(car.rateperkm); 
+                                                            calculateBaseFare(car.rateperkm);
                                                             const fare = Math.floor(car.rateperkm * booking.calculatedDistance);
 
-                                                            
+
                                                             const carPrice = {
                                                                 fare,
                                                                 car: car.name,

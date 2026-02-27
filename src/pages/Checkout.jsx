@@ -32,7 +32,7 @@ const Checkout = () => {
 
     function calculateTotal() {
         if (farebase) {
-            const baseFare = parseFloat(farebase.fare) || 0;
+            const baseFare = booking.returndate? parseFloat(farebase.fare*2):parseFloat(farebase.fare) || 0;
             const toll = booking?.airportPickup ? 20 : 0;
             const extraStopCharges = booking?.extraStop ? booking.extraStop * 15 : 0;
             const gst = parseFloat((baseFare * 0.1).toFixed(2));
@@ -41,7 +41,7 @@ const Checkout = () => {
 
             return total;
         }
-        else{
+        else {
             return 0;
         }
     }
@@ -97,13 +97,24 @@ const Checkout = () => {
                                         </div>
                                         <div className='flex flex-col items-start'>
                                             <h1 className='text-xl font-semibold font-Roboto max-sm:text-[15px]'>{farebase.car}</h1>
-                                            <p className='font-Roboto text-[14px] max-sm:text-[12px] text-gray-600'>{`Base Fare: $${farebase.fare}`}</p>
+                                            <p className='font-Roboto text-[14px] max-sm:text-[12px] text-gray-600'>Base Fare: ${booking.returndate? farebase.fare*2:farebase.fare}</p>
                                             <p className='font-Roboto text-[14px] max-sm:text-[12px] text-gray-600 text-left mt-2'>
                                                 <span className='font-bold '>Outbound:</span> {booking.pickup} - {booking.dropoff}<br />
                                                 Date: {booking.pickupDate} | Time: {booking.pickupTime}<br /> Distance: {booking.calculatedDistance} |
                                                 Travel: {booking.calculatedDuration}<br /> Extra Stops: {booking.extraStop}
-
                                             </p>
+                                            {
+                                                booking.returndate ? (
+                                                    <p className='font-Roboto text-[14px] max-sm:text-[12px] text-gray-600 text-left mt-2'>
+                                                        <span className='font-bold '>Return:</span> {booking.dropoff} - {booking.pickup}<br />
+                                                        Date: {booking.returndate} | Time: {booking.returntime}<br /> Distance: {booking.calculatedDistance} |
+                                                        Travel: {booking.calculatedDuration}<br /> Extra Stops: {booking.extraStop}
+                                                    </p>
+                                                ):(
+                                                    ""
+                                                )
+                                            }
+
                                         </div>
                                     </div>
                                     <div className='max-sm:mt-3'>
@@ -121,12 +132,12 @@ const Checkout = () => {
                                 <hr className='text-gray-300 my-5' />
                                 <div className='flex justify-between'>
                                     <p className='font-Roboto text-gray-600 text-[14px] max-sm:text-[12px]'>Base Fare: </p>
-                                    <p className='font-Roboto text-[14px] max-sm:text-[12px]'>${farebase.fare}</p>
+                                    <p className='font-Roboto text-[14px] max-sm:text-[12px]'>${booking.returndate? farebase.fare*2:farebase.fare}</p>
                                 </div>
                                 <hr className='text-gray-300 my-2' />
                                 <div className='flex justify-between py-1'>
                                     <p className='font-Roboto text-[14px] max-sm:text-[12px] text-gray-600'>Subtotal: </p>
-                                    <p className='font-Roboto text-[14px] max-sm:text-[12px]'>${farebase.fare}</p>
+                                    <p className='font-Roboto text-[14px] max-sm:text-[12px]'>${booking.returndate? farebase.fare*2:farebase.fare}</p>
                                 </div>
                                 {
                                     booking.airportPickup ? (

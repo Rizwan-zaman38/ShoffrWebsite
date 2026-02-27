@@ -12,6 +12,7 @@ import AirportDropoff from '../SelectionFields/AirportDropoff';
 import AirportPickup from '../SelectionFields/AirportPickup';
 import { useNavigate } from 'react-router-dom';
 import dotenv from 'dotenv'
+import Returntime from '../SelectionFields/Returntime';
 
 
 const Booking = () => {
@@ -24,7 +25,9 @@ const Booking = () => {
   const [pickup, setPickup] = useState("");
   const [dropoff, setDropoff] = useState("");
   const [pickupDate, setPickupDate] = useState("");
+  const [returndate, setReturndate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
+  const [returntime, setReturntime] = useState("");
   const [transferType, setTransferType] = useState("");
   const [extraStop, setExtraStop] = useState("");
   const [passengers, setPassengers] = useState(1);
@@ -189,10 +192,13 @@ const Booking = () => {
       const bookingData = {
         pickupDate,
         pickupTime,
+        returndate,
+        returntime,
         airportPickup,
         airportDropOff,
         pickup,
         dropoff,
+        transferType,
         calculatedDistance,
         calculatedDuration,
         extraStop,
@@ -338,6 +344,36 @@ const Booking = () => {
                     />
                   </div>
                 </div>
+
+                {
+                  transferType === "Two Way (Round Trip)" ? (
+                    <div className="grid grid-cols-2 gap-4 max-sm:gap-1 mb-4 max-sm:mb-2 max-md:grid-cols-1">
+                      <div>
+                        <h2 className='text-gray-600 flex font-Roboto justify-start'>Return Date</h2>
+                        <div className="flex items-center gap-2 bg-gray-50 p-3 rounded-2xl shadow-sm">
+                          <Calendar className="w-5 h-5 text-gray-600" />
+                          <input
+                            type="date"
+                            className="flex-1 bg-transparent outline-none text-gray-700"
+                            value={returndate}
+                            onChange={(e) => setReturndate(e.target.value)}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <h2 className='text-gray-600 flex font-Roboto justify-start'>Return Time</h2>
+                        <Returntime
+                          returntime={returntime}
+                          setReturntime={setReturntime}
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    ''
+                  )
+                }
 
                 <Seats
                   passengers={passengers}

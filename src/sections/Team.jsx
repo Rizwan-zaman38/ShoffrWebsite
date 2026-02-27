@@ -9,7 +9,7 @@ const Team = () => {
         <section id='team'>
             <div className='flex justify-center items-center text-center w-full text-white bg-black border border-[#D4C5A0]'>
                 <div className='flex flex-col gap-5 justify-center items-center px-3 mt-20 max-sm:gap-2 max-sm:mt-10 max-w-3xl'>
-                    <h1 className='text-3xl font-bold max-sm:text-2xl md:text-4xl pb-3 sm:pb-4'>Professional drivers for every ride</h1>
+                    <h1 className='text-3xl font-bold max-sm:text-2xl md:text-4xl pb-3 sm:pb-4' >Professional drivers for every ride</h1>
                     <p className='text-gray-400 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base'>Our drivers are trained professionals who understand the art of exceptional service. Clean, courteous, and committed to your comfort.</p>
                     <div className='flex justify-center gap-4'>
                         <button className='transition ease-in-out duration-500 hover:scale-110 '>
